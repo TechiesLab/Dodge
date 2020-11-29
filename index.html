@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dodge</title>
+  <link rel="shortcut icon" type="image/png" href="images/ico_full.png"/>
+  <link rel="stylesheet" href="stylesheet/prism.css">
+  <link rel="stylesheet" href="stylesheet/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+  <!-- Introduction -->
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://wallup.net/wp-content/uploads/2016/05/26/267616-digital_art-recursion-chess-pawns-board_games-spiral-shadow-surreal-distortion-checkered.jpg');">
+    <div id="class-languages">
+      <i class="fab fa-html5 mr-1" style="color: #f84820"></i>
+      <i class="fab fa-css3-alt mr-1" style="color: #1970b5"></i>
+      <i class="fab fa-js-square mr-1" style="color: #FFE01B"></i>
+    </div>
+    <div class="container">
+      <div class="main">
+        <img src="images/logo.png" alt="">
+        <div class="class-title">
+          <h1>Dodge</h1>
+        </div>
+      </div>
+      <p>Salut! Aujourd'hui on va tenter de créer un jeu vidéo en p5.js.</p>
+      <a class="btn btn-primary tl-button" href="#challenge" role="button">Commencer !</a>
+    </div>
+  </div>
+
+  <div class="container" id="challenge">
+
+    <div class="accordion" id="accordionExample">
+
+      <!-- Étape 1 -->
+      <div class="card">
+        <div class="card-header" id="heading1">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              Étape 1 - Défis à compléter avant celui-ci
+            </button>
+          </h2>
+        </div>
+        <div id="collapse1" class="collapse show" aria-labelledby="heading1" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Avant de t'attaquer à ce défi, on te conseille de compléter les défis suivants:</p>
+            <ol>
+              <li><a href="https://techieslab.github.io/year-prediction_instructions/" target="_blank">En 2020 je serai...</a></li>
+              <li><a href="https://techieslab.github.io/rainbow_instructions/" target="_blank">Ça va bien aller</a></li>
+              <li><a href="https://techieslab.github.io/soap-bubble-adv_instructions/" target="_blank">Bulles de savant</a></li>
+              <li><a href="ttps://techieslab.github.io/10Print/" target="_blank">10 Print</a></li>
+              <li><a href="ttps://techieslab.github.io/WEBGL/" target="_blank">WEBGL</a></li>
+              <li><a href="ttps://techieslab.github.io/animation-3d/" target="_blank">Animation 3D</a></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="card">
+        <div class="card-header" id="heading2">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              Étape 2 - Le jeu
+            </button>
+          </h2>
+        </div>
+        <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Le jeu qu'on va créer s'appelle "Dodge". Son but est très simple: Tu joues une petite balle qui doit aller de la gauche vers la droite de l'écran. Si le joueur ne fait rien, la balle bouge automatiquement à droite, et si le joueur clique sur sa souris, elle bouge à gauche. </p>
+
+            <p>Jusque là, le jeu n'est pas bien difficile. Mais il y a un petit bonus: Des bombes vont tomber du ciel et essayer de détruire la pauvre balle. Tu dois donc éviter les bombes!</p>
+
+            <p>Tu peux jouer à ma version du jeu <a href="/P5JS/index.html">ici</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 3 -->
+      <div class="card">
+        <div class="card-header" id="heading3">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              Étape 3 - Les mouvements du joueur
+            </button>
+          </h2>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>On va commencer par les mouvements du joueur. Comme le joueur peut bouger en X, il nous faut commencer par créer une variable qui garde cette position X. Tu dois initialiser la variable en dehors de toute fonction.</p>
+
+            <pre><code class="language-js">
+              let positionX = 20;
+            </code></pre>
+
+            <p>Dans notre fonction <code>draw()</code> on veut alors dessiner le joueur. Je vais simplement dessiner un cercle pour le joueur, mais je te défie d'être plus créatif!</p>
+
+            <pre><code class="language-js">
+              circle(positionX, 350, 10)
+            </code></pre>
+
+            <p>On doit ensuite faire bouger le personnage à droite lorsqu'on ne fait rien. On doit donc vérifier si la souris est pressée ou non. Heureusement pour nous, il existe une fonction pour cela!</p>
+
+            <p>En effet, on va utiliser la fonction <code>mousePressed()</code>. Tu peux la définir comme la fonction <code>draw()</code></p>
+
+            <pre><code class="language-js">
+              function mousePressed() {
+                // Code ici
+              }
+            </code></pre>
+
+            <p>Dans la fonction <code>draw()</code>, on peut dire que le joueur doit toujours avancer de 10 pixels. Lorsque la souris est pressée, on peut faire reculer le joueur de 20 pixels. Comme il avancera aussi de 10, cela revient à reculer de 10.</p>
+
+            <p>Essaie de coder cela!</p>
+
+            <p>Tu te rends sûrement compte qu'il y a un problème... En fait, la function <code>mousePressed()</code> ne s'actionne que lorsque la souris est pressée...</p>
+
+            <p>On va donc changer notre façon de penser: On va créer une vitesse, <code>speed</code>, qui vaut genre 10 au début. Lorsqu'on appuie sur la souris, elle vaut -10. Lorsque la souris est relachée, elle vaudra de nouveau 10.</p>
+
+            <p>Cela devrait marcher! Il nous faut juste une façon de détecter lorsque la souris est relachée... Chance! Cette fonction s'appelle <code>mouseReleased()</code>!</p>
+
+            <pre><code class="language-js">
+              function mouseReleased() {
+                // Code ici
+              }
+            </code></pre>
+
+            <p>Tu devrais pouvoir compléter le reste par toi-même. Si tu as des problèmes, demande à ton animateur.</p>
+
+            <p>10 et -10 sont peut être un peu rapides pour tes vitesses. Tu peux les réduire si tu préferes, genre 4 et -4.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 4 -->
+      <div class="card">
+        <div class="card-header" id="heading4">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              Étape 4 - Des bombes
+            </button>
+          </h2>
+        </div>
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Et si on codait les bombes maintenant? L'idée est de faire apparaître des bombes de façon aléatoire en haut de l'écran, et quelle tombent vers le bas.</p>
+
+            <p>Commençons par coder une bombe. Elle a une position X et Y qu'on doit définir en dehors des fonctions.</p>
+
+            <pre><code class="language-js">
+              let bombeX = 200;
+              let bombeY = 0;
+            </code></pre>
+
+            <p>Dans la fonction <code>draw()</code>, on veut alors dessiner ces bombes à cette position, et les faire tomber un peu vers le bas. Comme ceci:</p>
+
+            <pre><code class="language-js">
+              rect(bombeX, bombeY, 20, 30);
+              bombeY -= 2;
+            </code></pre>
+
+            <p>C'est bien gentil, mais comment est-ce qu'on peut étendre ceci à plusieurs bombes?</p>
+
+            <p>On va utiliser quelque chose appelé un dictionnaire! Plutôt que de dire <code>let bombeX = ...</code> et <code>let bombeY = ...</code>, on va les combiner comme ceci:</p>
+
+            <pre><code class="language-js">
+              let bombe = {
+                x: 200,
+                y: 0
+              }
+            </code></pre>
+
+            <p>Lorsqu'on utilise les variables <code>x</code> et <code>y</code> de la bombe, on utilise le mot clé <code>bombe.x</code> ou <code>bombe.y</code>. Remplace tous les <code>bombeX</code> et <code>bombeY</code> par les nouvelles valeurs.</p>
+
+            <p>Tu ne vois toujours pas comment étendre ceci à plusieurs bombes? C'est normal ;-) Pour créer plusieurs bombes, commence par créer une liste <code>bombes</code> vide.</p>
+
+            <pre><code class="language-js">
+              let bombes = [];
+            </code></pre>
+
+            <p>Dans la fonction <code>draw()</code>, on va donc ajouter une nouvelle bombe à la liste à chaque instant:</p>
+
+            <pre><code class="language-js">
+              bombes.push({
+                x: 200,
+                y: 0
+              });
+            </code></pre>
+
+            <p>On doit aussi se souvenir de montrer les bombes, comme pour l'instant on ne montre que la bombe de base.</p>
+
+            <p>Tu peux effacer la bombe de base (La partie "dessin" et la partie où tu initialises la variable). On veut alors faire une boucle dans la fonction <code>draw()</code>, qui dessine chacune des bombes.</p>
+
+            <p>Pour ce faire, on va utiliser une boucle <code>for</code>. Mais on va en utiliser une un peu spéciale, qui est nouvelle à la version 6 de JavaScript. C'est la boucle <code>for ... of ...</code>. Elle s'utilise comme suit:</p>
+
+            <pre><code class="language-js">
+              for(bombe of bombes) {
+                // Dessiner bombe
+                // Mettre à jour le Y de la bombe
+              }
+            </code></pre>
+
+            <p>Cette boucle va prendre chaque élément <code>bombe</code> dans la liste <code>bombes</code>, et va faire quelque chose avec.</p>
+
+            <p>Tu devrais remarquer 2 trucs: Premièrement, les bombes apparaîssent toutes ensembles. On va donc réparer cela!</p>
+
+            <p>Plutôt que de faire apparaître ta bombe à 200 en X, tu peux le faire apparaître à une position <b>aléatoire</b> entre 0 et 400.</p>
+
+            <p>En p5.js, on utilise la fonction <code>random()</code> pour avoir des numéros aléatoires</p>
+
+            <pre><code class="language-js">
+              random(0, 10) // Nombre aléatoire entre 0 et 10
+            </code></pre>
+
+            <p>Un autre truc que tu as pu remarquer est que les bombes ne disparaîssent jamais et que cela commence à buger après un certain temps. C'est parce qu'on n'efface pas les bombes quand elles arrivent en bas.</p>
+
+            <p>On ne va pas effacer les bombes en fait, on va simplement les remettre en haut de l'écran. On va définir un nombre maximal de bombes qui peuvent être sur l'écran en même temps, et on ne va que ajouter des bombes si ce nombre n'est pas dépassé.</p>
+
+            <pre><code class="language-js">
+              if(bombes.length < 20) {
+                bombes.push(...);
+              }
+            </code></pre>
+
+            <p>Lorsque les bombes arrivent en bas, on va simplement les remettre en haut, avec une nouvelle position X. Pour ce faire, lorsque tu mets à jour la partie <code>bombe.y</code>, tu dois vérifier que la bombe n'est pas en dehors de l'écran. Si elle n'est, tu dois changer <code>bombe.x</code> et <code>bombe.y</code></p>
+            
+            <pre><code class="language-js">
+              if(bombe.y > 400) {
+                bombe.x = ...;
+                bombe.y = ...;
+              } else {
+                bombe.y += ...;
+              }
+            </code></pre>
+
+            <p>Finalement, tu as sûrement remarqué que les bombes apparaîssent trop prêts les unes des autres. Pour ce faire, on ne peut pas changer les frameRate, comme cela changerait toute la vitesse du jeu...</p>
+
+            <p>On va plutôt créer encore une variable qui se souvient de l'instant de la dernière bombe créée. On ne peut en créer une nouvelle que lorsque ce temps est il y a disons 0.2 secondes. Lorsqu'on crée une nouvelle, on mets à jour la variable.</p>
+
+            <p>Commençons par créer la variable.</p>
+
+            <pre><code class="language-js">
+              let lastBombe = 0;
+            </code></pre>
+
+            <p>Avant de créer une bombe, on doit vérifier que la dernière bombe crée est il y a assez longtemps. On veut aussi mettre à jour la variable.</p>
+
+            <pre><code class="language-js">
+              if (lastBombe + 200 < millis()) {
+                // Créer nouvelle bombe
+                lastBombe = millis();
+              }
+            </code></pre>
+
+            <p>Super! Tu peux déjà essayer d'éviter les bombes! En ce moment, elles ne te tuent pas pourtant... Mais ne t'inquiètes pas, cela va venir ;-)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 5 -->
+      <div class="card">
+        <div class="card-header" id="heading5">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              Étape 5 - Collisions
+            </button>
+          </h2>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>En p5.js on n'a pas de fonctionnalité "Quand ... touché" comme en Scratch. On va donc devoir coder cela par nous mêmes...</p>
+
+            <p>On doit d'abord se forger une idée de ce qu'il se passe lorsque le joueur se fait toucher par une bombe. Deux options se présentent: Soit on fait perdre le joueur dès qu'il se fait toucher, soit on le remet simplement au début pour qu'il puisse re-essayer.</p>
+
+            <p>Comme c'est bien plus facile de simplement le remettre au début, on va faire cela. Si tu veux le faire perdre, cela peut être un challenge pour toi ;-)</p>
+
+            <p>Pour voir si le joueur touche une bombe, on va simplement vérifier si le joueur est près ou non de la bombe. En effet, on a les coordonnées du joueur et de toutes les bombes, donc on peut facilement vérifier si les deux sont trop prêts les uns de l'autre. Lorsqu'ils sont trop prêts, on va faire perdre le joueur, donc le renvoyer au début du jeu.</p>
+
+            <pre><code class="language-js">
+              for(bombe of bombes) {
+                // Bouger bombe
+                if(dist(bombe.x, bombe.y, positionX, 350) < 30) {
+                  positionX = ...;
+                }
+              }
+            </code></pre>
+
+            <p>La fonction <code>dist()</code> nous donne la distance entre deux ensembles de points. Elle prend 4 paramètres, la première coordonnée X, la première coordonnée Y, la deuxième coordonnée X et la deuxième coordonnée Y.</p>
+
+            <p>Voilà! Lorsque tu te rapproches trop d'une bombe, tu meurs!</p>
+
+            <p>On aimerait aussi vérifier si on a gagné. Pour ce faire, il suffit de regarder si la <code>positionX</code> est plus grande que <code>400</code> (La largeur de ton canvas). Lorsque cela est le cas, tu peux afficher un texte sur l'écran.</p>
+
+            <pre><code class="language-js">
+              if(positionX > ...) {
+                // Afficher "T'as gagné!"
+              }
+            </code></pre>
+
+            <p>Ton jeu est maintenant prêt!</p>
+
+            <p>Tu peux l'envoyer à tes amis en le <i>partageant</i>. Pour ce faire, sauvegarde d'abord ton projet. Ensuite, sélectionne File>Share. Ici, tu peux copier le lien "Fullscreen", qui est un lien uniquement avec le jeu, sans le code. En utilisant ce lien, tes amis pourront jouer à jeu aussi!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Étape 6 -->
+      <div class="card">
+        <div class="card-header" id="heading6">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+              Étape 6 - Challenges
+            </button>
+          </h2>
+        </div>
+        <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Tu as déjà fini? Ici tu trouveras une liste de challenges que tu peux essayer d'intégrer dans ton jeu. Certains sont plus durs que d'autres, mais essaie les quand même ;-)</p>
+
+            <ul>
+              <li>Re-Dessine ton héros pour qu'il soit plus joli!</li>
+              <li>Re-Dessine tes bombes pour qu'elles soient plus réalistes</li>
+              <li>Fait disparaître les bombes lorsque tu as gagné! Pour ce faire, tu aura peut être besoin d'une variable qui stocke si tu as déjà fini ou non.</li>
+              <li>Fait arrêter le mouvement du joueur lorsque tu as gagné. Tu peux re-utiliser la même variable qu'avant pour ce faire.</li>
+              <li>Donne un certain nombre de vies à ton joueur. Tu aura certainement besoin de variables pour ce faire. Tu peux aussi afficher le nombre de vies dans le coin de l'écran. Lorsqu'il n'a plus de vies, le jeu doit se terminer et afficher que tu as perdu.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div> 
+  </div>
+
+
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://techieslab.be/"><i class="fas fa-globe"></i></i></a>
+    <a href="https://www.facebook.com/TechiesLabBrussels"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/TechiesLab"><i class="fab fa-twitter"></i></a>
+  </div>
+  <div class="footer-copyright">
+    <a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/3298561-faites-votre-mise-en-page-avec-flexbox#/id/r-3298711" rel="noopener noreferrer" target="_blank" class="alert-link copyright">
+      <i class="far fa-copyright"></i>
+      2020 Techies Lab ASBL. All rights reserved.
+    </a>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="javascript/prism.js"></script>
+</body>
+</html>
